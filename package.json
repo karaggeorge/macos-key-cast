@@ -1,0 +1,50 @@
+{
+  "name": "macos-key-cast",
+  "version": "1.0.0",
+  "description": "Log keys pressed on macOS. Useful for screen recordings and presentations.",
+  "main": "index.js",
+  "repository": "https://github.com/karaggeorge/macos-key-cast",
+  "author": {
+    "name": "George Karagkiaouris",
+    "email": "gkaragkiaouris2@gmail.com",
+    "url": "https://gkaragkiaouris.tech"
+  },
+  "bin": {
+    "key-cast": "./cli.js"
+  },
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "index.js",
+    "cli.js",
+    "key-cast"
+  ],
+  "scripts": {
+    "test": "xo",
+    "build": "swiftc -o key-cast main.swift",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "macos",
+    "swift",
+    "log",
+    "cast",
+    "keys",
+    "keyboard",
+    "keylogger",
+    "record",
+    "screen"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "electron-util": "^0.13.1",
+    "execa": "^4.0.0",
+    "macos-version": "^5.2.0",
+    "p-cancelable": "^2.0.0"
+  },
+  "devDependencies": {
+    "xo": "^0.25.3"
+  }
+}
