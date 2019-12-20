@@ -9,17 +9,16 @@
     "url": "https://gkaragkiaouris.tech"
   },
   "bin": {
-    "key-cast": "./cli.js"
+    "key-cast": "./key-cast"
   },
   "license": "MIT",
   "files": [
     "index.js",
-    "cli.js",
     "key-cast"
   ],
   "scripts": {
     "test": "xo",
-    "build": "swiftc -o key-cast main.swift",
+    "build": "swift build --configuration=release && mv .build/release/key-cast .",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

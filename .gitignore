@@ -2,7 +2,12 @@
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
 
-key-cast
+/key-cast
+/.build
+/*.xcodeproj
+xcuserdata
+project.xcworkspace
+.swiftpm
 
 ### Node ###
 # Logs
