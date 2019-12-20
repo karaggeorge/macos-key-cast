@@ -11,8 +11,9 @@ const binary = path.join(electronUtil.fixPathForAsarUnpack(__dirname), 'key-cast
 const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 
 module.exports = ({
-	size = 'normal',
-	delay = 0.5,
+	size,
+	delay,
+	display,
 	keyCombinationsOnly
 } = {}) => new PCancelable(async (resolve, reject, onCancel) => {
 	if (!isSupported || !hasPermissions()) {
@@ -21,10 +22,9 @@ module.exports = ({
 	}
 
 	const worker = execa(binary, [
-		'-d',
-		delay,
-		'-s',
-		size,
+		...(size ? ['-s', size] : []),
+		...(delay ? ['-t', delay] : []),
+		...(display ? ['-d', display] : []),
 		keyCombinationsOnly && '-k'
 	].filter(Boolean));
 

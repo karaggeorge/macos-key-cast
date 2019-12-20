@@ -61,6 +61,12 @@ Default: `0.5`
 
 How long the window should remain on screen after the last key press
 
+##### `options.display: number`
+
+Display id of the screen to show the UI in. Defaults to the main screen.
+
+Note: If you are using electron, you can find the display id in the [Display Object](https://electronjs.org/docs/api/structures/display).
+
 ##### `options.keyCombinationsOnly: boolean`
 
 Default: `false`

@@ -40,7 +40,8 @@ keyCastProcess.cancel();
 declare function keyCast(options?: {
     size?: 'small' | 'normal' | 'large';
     delay?: number;
-    keyCombinationsOnly?: boolean
+    display?: number;
+    keyCombinationsOnly?: boolean;
 }): PCancelable<void>;
 
 export = keyCast
