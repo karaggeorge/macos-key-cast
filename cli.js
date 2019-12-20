@@ -2,4 +2,9 @@
 
 const castKeys = require('.');
 
-castKeys();
+if (castKeys.hasPermissions({ask: true})) {
+	castKeys();
+} else {
+	console.log('Please enable accessibility permissions');
+	process.exit(1);
+}
