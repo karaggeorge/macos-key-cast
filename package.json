@@ -1,6 +1,6 @@
 {
   "name": "macos-key-cast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Log keys pressed on macOS. Useful for screen recordings and presentations.",
   "main": "index.js",
   "repository": "https://github.com/karaggeorge/macos-key-cast",
