@@ -55,6 +55,7 @@ If you want to use this and need more features or find a bug, please open an iss
 
 - [mac-focus-window](https://github.com/karaggeorge/mac-focus-window) - Focus a window and bring it to the front on macOS
 - [mac-windows](https://github.com/karaggeorge/mac-windows) - Provide Information about Application Windows running
+- [macos-accessibility-permissions](https://github.com/karaggeorge/macos-accessibility-permissions) - Check and request macOS accessibility permissions
 
 ## License
 
