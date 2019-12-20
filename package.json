@@ -9,7 +9,7 @@
     "url": "https://gkaragkiaouris.tech"
   },
   "bin": {
-    "key-cast": "./cli.js"
+    "macos-key-cast": "./key-cast"
   },
   "license": "MIT",
   "files": [
