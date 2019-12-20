@@ -12,7 +12,7 @@ const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 
 module.exports = ({
 	size = 'normal',
-	delay = 1,
+	delay = 0.5,
 	keyCombinationsOnly
 } = {}) => new PCancelable(async (resolve, reject, onCancel) => {
 	if (!isSupported || !hasPermissions()) {

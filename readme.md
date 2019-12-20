@@ -21,7 +21,7 @@ $ npm install macos-key-cast
 ```js
 const castKeys = require('macos-key-cast');
 
-const process = castKeys();
+const process = castKeys({size: 'large', delay: 1.5, keyCombinationsOnly: true});
 
 // Later
 
@@ -39,17 +39,39 @@ process.cancel();
 
 ## API
 
-### `castKyes(): PCancelable<void>`
+### `castKyes(options: object): PCancelable<void>`
 
 Start the process.
 
 The returned promise is an instance of `PCancelable`, so it has a `.cancel()` method which can be used to kill the process
 
-## Limitations
+#### `options: object`
 
-By design, the package only shows special keys and keys that are accompanied by modifiers
+Additional options passed to the CLI
 
-If you want to use this and need more features or find a bug, please open an issue and I'll do my best to implement
+##### `options.size: 'small' | 'normal' | 'large'`
+
+Default: `normal`
+
+How big the window and the font should be
+
+##### `options.delay: number`
+
+Default: `0.5`
+
+How long the window should remain on screen after the last key press
+
+##### `options.keyCombinationsOnly: boolean`
+
+Default: `false`
+
+Whether or not it should track all key presses or only combinations
+
+## Contributing
+
+If you want to use this and need more features or find a bug, please open an issue and I'll do my best to implement.
+
+PRs are always welcome as well 😃
 
 ## Related
 
