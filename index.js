@@ -12,6 +12,7 @@ const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 module.exports = () => new PCancelable(async (resolve, reject, onCancel) => {
 	if (!isSupported || !hasPermissions()) {
 		resolve();
+		return;
 	}
 
 	const worker = execa(binary);
