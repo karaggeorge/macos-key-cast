@@ -41,6 +41,7 @@
   "dependencies": {
     "electron-util": "^0.13.1",
     "execa": "^4.0.0",
+    "macos-accessibility-permissions": "^1.0.0",
     "macos-version": "^5.2.0",
     "p-cancelable": "^2.0.0"
   },

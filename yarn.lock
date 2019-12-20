@@ -2007,6 +2007,15 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+macos-accessibility-permissions@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/macos-accessibility-permissions/-/macos-accessibility-permissions-1.0.0.tgz#3b5dabba729620f581d0a1ca40bee51c838df4df"
+  integrity sha512-qieFAJCsvDzDHOUruwx52gmPt57AIN49HIweMxAxi52QnHoXmT7mkT8TYMSmH/xpPwFdq0sg39yyzLPlybx78g==
+  dependencies:
+    electron-util "^0.13.1"
+    execa "^4.0.0"
+    macos-version "^5.2.0"
+
 macos-version@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/macos-version/-/macos-version-5.2.0.tgz#ae3a25155877902bbc5f5ae6b2d57b1ddce2e79e"

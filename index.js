@@ -3,13 +3,14 @@ const execa = require('execa');
 const electronUtil = require('electron-util/node');
 const macosVersion = require('macos-version');
 const PCancelable = require('p-cancelable');
+const hasPermissions = require('macos-accessibility-permissions');
 
 const binary = path.join(electronUtil.fixPathForAsarUnpack(__dirname), 'key-cast');
 
 const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 
 module.exports = () => new PCancelable(async (resolve, reject, onCancel) => {
-	if (!isSupported) {
+	if (!isSupported || !hasPermissions()) {
 		resolve();
 	}
 
@@ -33,3 +34,5 @@ module.exports = () => new PCancelable(async (resolve, reject, onCancel) => {
 });
 
 module.exports.isSupported = isSupported;
+
+module.exports.hasPermissions = hasPermissions;
