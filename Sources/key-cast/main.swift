@@ -10,8 +10,11 @@ final class KeyCastCommand: Command {
     @Key("-s", "--size", description: "Size of the window and font to use. Defaults to normal")
     var size: Size?
 
-    @Key("-d", "--delay", description: "How long the key remains on screen in seconds")
+    @Key("-t", "--delay", description: "How long the key remains on screen in seconds")
     var delay: Double?
+
+    @Key("-d", "--display", description: "Display number of the screen to show the UI in. Defaults to the main screen.")
+    var display: Int?
 
     func execute() throws {
         if !AXIsProcessTrustedWithOptions(["AXTrustedCheckOptionPrompt": true] as CFDictionary) {
@@ -23,7 +26,8 @@ final class KeyCastCommand: Command {
         let delegate = AppDelegate(
             size: size,
             keyCombinationsOnly: keyCombinationsOnly,
-            delay: delay
+            delay: delay,
+            display: display
         )
         app.delegate = delegate
         app.run()

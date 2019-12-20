@@ -15,17 +15,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     var windowSize: WindowSize
     var keyCombinationsOnly: Bool
     var delay: Double
+    var display: Int?
 
     weak var timer: Timer?
 
     init(
         size: Size?,
         keyCombinationsOnly: Bool,
-        delay: Double?
+        delay: Double?,
+        display: Int?
     ) {
         self.windowSize = getWindowSize(for: size ?? .normal)
         self.keyCombinationsOnly = keyCombinationsOnly
         self.delay = delay ?? 0.5
+        self.display = display
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -69,14 +72,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         listenToGlobalKeyboardEvents(self)
 
-        guard let screen = window.screen else {
+        guard let screen = (display == nil ? nil : NSScreen.screens.first { screen in
+            (screen.deviceDescription[NSDeviceDescriptionKey(rawValue: "NSScreenNumber")] as? Int) == display
+        }) ?? window.screen else {
             return
         }
 
         let windowFrameSize = window.frame.size
         let screenFrame = screen.frame
-        let x = (screenFrame.width / 2) - (windowFrameSize.width / 2)
-        let y = (screenFrame.height * 0.15) - (windowFrameSize.height / 2)
+        let x = screenFrame.origin.x + (screenFrame.width / 2) - (windowFrameSize.width / 2)
+        let y = screenFrame.origin.y + (screenFrame.height * 0.15) - (windowFrameSize.height / 2)
 
         window.setFrame(NSMakeRect(x, y, windowFrameSize.width, windowFrameSize.height), display: true)
     }
