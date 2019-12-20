@@ -15,10 +15,11 @@
   "license": "MIT",
   "files": [
     "index.js",
+    "index.d.ts",
     "key-cast"
   ],
   "scripts": {
-    "test": "xo",
+    "test": "xo && tsd",
     "build": "swift build --configuration=release && mv .build/release/key-cast .",
     "prepublishOnly": "npm run build"
   },
@@ -39,11 +40,12 @@
   "dependencies": {
     "electron-util": "^0.13.1",
     "execa": "^4.0.0",
-    "macos-accessibility-permissions": "^1.0.0",
+    "macos-accessibility-permissions": "^1.0.1",
     "macos-version": "^5.2.0",
     "p-cancelable": "^2.0.0"
   },
   "devDependencies": {
+    "tsd": "^0.11.0",
     "xo": "^0.25.3"
   }
 }

@@ -1,3 +1,4 @@
+'use strict';
 const path = require('path');
 const execa = require('execa');
 const electronUtil = require('electron-util/node');
@@ -9,13 +10,23 @@ const binary = path.join(electronUtil.fixPathForAsarUnpack(__dirname), 'key-cast
 
 const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 
-module.exports = () => new PCancelable(async (resolve, reject, onCancel) => {
+module.exports = ({
+	size = 'normal',
+	delay = 1,
+	keyCombinationsOnly
+} = {}) => new PCancelable(async (resolve, reject, onCancel) => {
 	if (!isSupported || !hasPermissions()) {
 		resolve();
 		return;
 	}
 
-	const worker = execa(binary);
+	const worker = execa(binary, [
+		'-d',
+		delay,
+		'-s',
+		size,
+		keyCombinationsOnly && '-k'
+	].filter(Boolean));
 
 	onCancel(() => {
 		resolve();
@@ -23,8 +34,12 @@ module.exports = () => new PCancelable(async (resolve, reject, onCancel) => {
 	});
 
 	try {
-		await worker;
-		resolve();
+		const {stderr} = await worker;
+		if (stderr) {
+			reject(stderr);
+		} else {
+			resolve();
+		}
 	} catch (error) {
 		if (error.isCanceled || error.stdout === 'canceled') {
 			resolve();
