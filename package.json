@@ -9,12 +9,12 @@
     "url": "https://gkaragkiaouris.tech"
   },
   "bin": {
-    "macos-key-cast": "./key-cast"
+    "macos-key-cast": "./key-cast",
+    "key-cast": "./key-cast"
   },
   "license": "MIT",
   "files": [
     "index.js",
-    "cli.js",
     "key-cast"
   ],
   "scripts": {
