@@ -43,7 +43,7 @@ process.cancel();
 
 Start the process.
 
-The returned promise is an instance of `PCancelable`, so it has a `.cancel()` method which can be used to kill the process
+The returned promise is an instance of [`PCancelable`](https://github.com/sindresorhus/p-cancelable), so it has a `.cancel()` method which can be used to kill the process
 
 #### `options: object`
 

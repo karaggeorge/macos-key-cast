@@ -3,7 +3,7 @@ import * as asd from 'macos-accessibility-permissions';
 
 declare namespace keyCast {
     /**
-    Whether or not this module is supported
+    Whether or not this module is supported.
     */
     export const isSupported: boolean;
 
@@ -16,8 +16,8 @@ declare namespace keyCast {
     hasPermissions({ask: true}); // false
     ```
 
-    @param options - Whether to promp the user or not
-    @returns Whether or not the permissions are granted
+    @param options - Whether to promp the user or not.
+    @returns Whether or not the permissions are granted.
     */
     export function hasPermissions(options?: {ask?: boolean}): boolean;
 }
@@ -34,8 +34,8 @@ const keyCastProcess = keyCast({size: 'large'});
 keyCastProcess.cancel();
 ```
 
-@param options - Additional options passed to the CLI
-@returns A cancelable promise to stop the casting
+@param options - Additional options passed to the CLI.
+@returns A cancelable promise to stop the casting.
 */
 declare function keyCast(options?: {
     size?: 'small' | 'normal' | 'large';
