@@ -1,4 +1,5 @@
-# macos-key-cast
+# macos-key-cast [![Actions Status](https://github.com/karaggeorge/macos-key-cast/workflows/Node%20CI/badge.svg)](https://github.com/karaggeorge/macos-key-cast/actions)
+
 
 > Log keys pressed on macOS. Useful for screen recordings and presentations.
 
