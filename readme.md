@@ -4,19 +4,43 @@
 
 Requires macOS 10.12 or later. macOS 10.13 or earlier needs to download the [Swift runtime support libraries](https://support.apple.com/kb/DL1998).
 
-## Run
+## Run as CLI
+
+### Using [npx](https://github.com/zkat/npx)
 
 ```
 $ npx macos-key-cast
 ```
 
-## Install
+### Installing
+
+```
+$ npm install -g macos-key-cast
+$ key-cast
+```
+
+### Usage
+
+```
+Usage: key-cast [options]
+
+Options:
+  -d, --display <value>     Display number of the screen to show the UI in. Defaults to the main screen.
+  -h, --help                Show help information
+  -k, --key-combinations    Show key combinations only
+  -s, --size <value>        Size of the window and font to use. Defaults to normal
+  -t, --delay <value>       How long the key remains on screen in seconds
+```
+
+## Node API
+
+### Installation
 
 ```
 $ npm install macos-key-cast
 ```
 
-## Usage
+### Usage
 
 ```js
 const castKeys = require('macos-key-cast');
@@ -28,46 +52,46 @@ const process = castKeys({size: 'large', delay: 1.5, keyCombinationsOnly: true})
 process.cancel();
 ```
 
-## Demo
+### Demo
 
 <img src="media/demo.gif">
 
-## Dark Mode support
+### Dark Mode support
 
 <img src="media/light.png" height="100">
 <img src="media/dark.png" height="100">
 
-## API
+### API
 
-### `castKyes(options: object): PCancelable<void>`
+#### `castKyes(options: object): PCancelable<void>`
 
 Start the process.
 
 The returned promise is an instance of [`PCancelable`](https://github.com/sindresorhus/p-cancelable), so it has a `.cancel()` method which can be used to kill the process
 
-#### `options: object`
+##### `options: object`
 
 Additional options passed to the CLI
 
-##### `options.size: 'small' | 'normal' | 'large'`
+###### `options.size: 'small' | 'normal' | 'large'`
 
 Default: `normal`
 
 How big the window and the font should be
 
-##### `options.delay: number`
+###### `options.delay: number`
 
 Default: `0.5`
 
 How long the window should remain on screen after the last key press
 
-##### `options.display: number`
+###### `options.display: number`
 
 Display id of the screen to show the UI in. Defaults to the main screen.
 
 Note: If you are using electron, you can find the display id in the [Display Object](https://electronjs.org/docs/api/structures/display).
 
-##### `options.keyCombinationsOnly: boolean`
+###### `options.keyCombinationsOnly: boolean`
 
 Default: `false`
 
