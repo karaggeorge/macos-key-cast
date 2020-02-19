@@ -65,7 +65,7 @@ process.cancel();
 
 ### API
 
-#### `castKyes(options: object): PCancelable<void>`
+#### `castKeys(options: object): PCancelable<void>`
 
 Start the process.
 
