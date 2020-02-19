@@ -14,7 +14,8 @@ module.exports = ({
 	size,
 	delay,
 	display,
-	keyCombinationsOnly
+	keyCombinationsOnly,
+	bounds
 } = {}) => new PCancelable(async (resolve, reject, onCancel) => {
 	if (!isSupported || !hasPermissions()) {
 		resolve();
@@ -25,6 +26,12 @@ module.exports = ({
 		...(size ? ['-s', size] : []),
 		...(delay ? ['-t', delay] : []),
 		...(display ? ['-d', display] : []),
+		...(
+			bounds ? [
+				'-b',
+				JSON.stringify({bounds: [[bounds.x, bounds.y], [bounds.width, bounds.height]]})
+			] : []
+		),
 		keyCombinationsOnly && '-k'
 	].filter(Boolean));
 

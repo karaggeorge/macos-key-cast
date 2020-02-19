@@ -16,6 +16,9 @@ final class KeyCastCommand: Command {
     @Key("-d", "--display", description: "Display number of the screen to show the UI in. Defaults to the main screen.")
     var display: Int?
 
+    @Key("-b", "--bounds", description: "JSON object with bounds of a rectangle to show the UI in. Example: '{\"bounds\":[[955,627],[656,384]]}'")
+    var bounds: String?
+
     func execute() throws {
         if !AXIsProcessTrustedWithOptions(["AXTrustedCheckOptionPrompt": true] as CFDictionary) {
             print("Please enable accessibility permissions")
@@ -27,7 +30,8 @@ final class KeyCastCommand: Command {
             size: size,
             keyCombinationsOnly: keyCombinationsOnly,
             delay: delay,
-            display: display
+            display: display,
+            bounds: bounds
         )
         app.delegate = delegate
         app.run()

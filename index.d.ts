@@ -42,6 +42,12 @@ declare function keyCast(options?: {
     delay?: number;
     display?: number;
     keyCombinationsOnly?: boolean;
+    bounds?: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }
 }): PCancelable<void>;
 
 export = keyCast

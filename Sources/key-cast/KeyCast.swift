@@ -14,6 +14,10 @@ struct WindowSize {
     let paddingHorizontal: CGFloat
 }
 
+struct Bounds: Decodable {
+    let bounds: CGRect
+}
+
 extension WindowSize {
     init(size: Size) {
         switch size {
@@ -58,6 +62,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let keyCombinationsOnly: Bool
     let delay: Double
     let display: Int?
+    var bounds: CGRect?
 
     weak var timer: Timer?
     var eventTap: CFMachPort?
@@ -66,12 +71,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         size: Size?,
         keyCombinationsOnly: Bool,
         delay: Double?,
-        display: Int?
+        display: Int?,
+        bounds: String?
     ) {
         self.windowSize = WindowSize(size: size ?? .normal)
         self.keyCombinationsOnly = keyCombinationsOnly
         self.delay = delay ?? 0.5
         self.display = display
+        self.bounds = nil
+
+        if let cropBounds = bounds {
+            do {
+                let decoded: Bounds = try cropBounds.jsonDecoded()
+                self.bounds = decoded.bounds
+            } catch {
+                print("here \(error)");
+                self.bounds = nil
+            }
+        }
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -109,10 +126,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let windowFrameSize = window.frame.size
         let screenFrame = screen.frame
-        let x = screenFrame.origin.x + (screenFrame.width / 2) - (windowFrameSize.width / 2)
-        let y = screenFrame.origin.y + (screenFrame.height * 0.15) - (windowFrameSize.height / 2)
 
-        window.setFrame(NSMakeRect(x, y, windowFrameSize.width, windowFrameSize.height), display: true)
+        if let cropBounds = bounds {
+            let x = screenFrame.origin.x + cropBounds.origin.x + (cropBounds.width / 2) - (windowFrameSize.width / 2)
+            let y = screenFrame.origin.x + cropBounds.origin.y + (cropBounds.height * 0.15) - (windowFrameSize.height / 2)
+
+            window.setFrame(NSMakeRect(x, y, windowFrameSize.width, windowFrameSize.height), display: true)
+        } else {
+            let x = screenFrame.origin.x + (screenFrame.width / 2) - (windowFrameSize.width / 2)
+            let y = screenFrame.origin.y + (screenFrame.height * 0.15) - (windowFrameSize.height / 2)
+
+            window.setFrame(NSMakeRect(x, y, windowFrameSize.width, windowFrameSize.height), display: true)
+        }        
     }
 
     func updateText(_ untrimmed: String, onlyMeta: Bool = false) {

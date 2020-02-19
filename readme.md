@@ -26,6 +26,7 @@ $ key-cast
 Usage: key-cast [options]
 
 Options:
+  -b, --bounds <value>      JSON object with bounds of a rectangle to show the UI in. Example: '{"bounds":[[955,627],[656,384]]}'
   -d, --display <value>     Display number of the screen to show the UI in. Defaults to the main screen.
   -h, --help                Show help information
   -k, --key-combinations    Show key combinations only
@@ -97,6 +98,10 @@ Note: If you are using electron, you can find the display id in the [Display Obj
 Default: `false`
 
 Whether or not it should track all key presses or only combinations
+
+###### `options.bounds: Object`
+
+An object containing keys `x`, `y`, `width`, `height` defining an area within the display to use for the UI's initial position.
 
 ## Contributing
 
