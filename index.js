@@ -35,6 +35,7 @@ module.exports = ({
 		keyCombinationsOnly && '-k'
 	].filter(Boolean));
 
+	onCancel.shouldReject = false;
 	onCancel(() => {
 		resolve();
 		worker.cancel();
