@@ -173,8 +173,11 @@ func getKeyPressText(_ event: NSEvent, keyCombinationsOnly: Bool) -> String {
         return ""
     }
 
-    characterCode = CGKeyCode(buffer[0])
-    text += " " + String(UnicodeScalar(UInt8(characterCode)))
+    let character = String(utf16CodeUnits: buffer, count: actualStringLength)
+    if character.isEmpty {
+        return ""
+    }
+    text += " " + character
 
     // If this is a command string, put it in uppercase.
     if isCommand {
