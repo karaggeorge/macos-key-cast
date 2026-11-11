@@ -75,7 +75,7 @@ The returned promise is an instance of [`PCancelable`](https://github.com/sindre
 
 Additional options passed to the CLI
 
-###### `options.size: 'small' | 'normal' | 'large'`
+###### `options.size: 'small' | 'normal' | 'large' | 'x-large' | 'xx-large' | 'xxx-large'`
 
 Default: `normal`
 

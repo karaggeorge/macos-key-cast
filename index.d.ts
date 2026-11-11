@@ -38,7 +38,7 @@ keyCastProcess.cancel();
 @returns A cancelable promise to stop the casting.
 */
 declare function keyCast(options?: {
-    size?: 'small' | 'normal' | 'large';
+    size?: 'small' | 'normal' | 'large' | 'x-large' | 'xx-large' | 'xxx-large';
     delay?: number;
     display?: number;
     keyCombinationsOnly?: boolean;
