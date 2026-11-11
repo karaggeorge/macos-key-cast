@@ -198,7 +198,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 let keyDown = event.type == .keyDown
                 let flagsChanged = event.type == .flagsChanged
 
-                if flagsChanged && timer == nil {
+                if flagsChanged {
                     var isCommand = false
                     var needsShift = false
                     var text = ""
@@ -225,7 +225,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     }
 
                     DispatchQueue.main.async {
-                        self.updateText(text, onlyMeta: true)
+                        if !text.isEmpty {
+                            self.updateText(text, onlyMeta: true)
+                        } else if self.timer == nil {
+                            self.queueClear()
+                        }
                     }
                 } else if keyDown {
                     DispatchQueue.main.async {
