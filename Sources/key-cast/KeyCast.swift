@@ -6,6 +6,9 @@ enum Size: String, ConvertibleFromString, CaseIterable {
     case small
     case normal
     case large
+    case xLarge = "x-large"
+    case xxLarge = "xx-large"
+    case xxxLarge = "xxx-large"
 }
 
 struct WindowSize {
@@ -25,6 +28,12 @@ extension WindowSize {
                 self.init(fontSize: 18.0, paddingVertical: 10.0, paddingHorizontal: 12.0)
             case .large:
                 self.init(fontSize: 26.0, paddingVertical: 16.0, paddingHorizontal: 20.0)
+            case .xLarge:
+                self.init(fontSize: 44.0, paddingVertical: 25.0, paddingHorizontal: 29.0)
+            case .xxLarge:
+                self.init(fontSize: 66.0, paddingVertical: 36.0, paddingHorizontal: 40.0)
+            case .xxxLarge:
+                self.init(fontSize: 88.0, paddingVertical: 47.0, paddingHorizontal: 51.0)
             default:
                 self.init(fontSize: 22.0, paddingVertical: 14.0, paddingHorizontal: 18.0)
         }
@@ -158,7 +167,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let windowFrame = window.frame
 
         var originalFrame = field.frame
-        originalFrame.size.width = 500 // Max width of the view
+        originalFrame.size.width = max(500, 500 * windowSize.fontSize / 22) // Max width of the view
         field.frame = originalFrame
         field.textStorage?.setAttributedString(NSAttributedString(string: string))
         field.textColor = .textColor
